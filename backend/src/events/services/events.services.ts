@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Event } from '../interfaces/event.interface'
 import { EventDTO } from '../interfaces/event.dto'
-import { Model } from 'mongoose'
+import mongoose, { Model } from 'mongoose'
 
 @Injectable()
 export class EventsService {
@@ -16,5 +16,9 @@ export class EventsService {
 
     async findAll(): Promise<Event[]> {
         return this.eventService.find({}).exec()
+    }
+
+    async getById(id: any): Promise<Event> {
+        return this.eventService.findById(id).exec()
     }
 }
