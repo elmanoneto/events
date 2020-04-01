@@ -27,15 +27,23 @@ export class EventsController {
         }
     }
 
+    @Get('/featured')
+    async getFeatured(@Res() res: Response) {
+        try {
+            const events = await this.eventsService.findAll()
+            res.status(HttpStatus.OK).send({ data: events })
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ code: HttpStatus.INTERNAL_SERVER_ERROR, data: error.message })
+        }
+    }
+
     @Get(':id')
     async get(@Param() params: any, @Res() res: Response) {
         try {
             const { id } = params
             const event = await this.eventsService.getById(id)
 
-            if (event === null) {
-                return res.status(HttpStatus.NOT_FOUND).send({ code: HttpStatus.NOT_FOUND, data: [] })
-            }
+            if (!event) return res.status(HttpStatus.NOT_FOUND).send({ code: HttpStatus.NOT_FOUND, data: [] })
 
             res.status(HttpStatus.OK).send({ data: event })
         } catch (error) {

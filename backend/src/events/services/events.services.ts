@@ -19,6 +19,10 @@ export class EventsService {
     }
 
     async getById(id: any): Promise<Event> {
-        return this.eventService.findById(id).exec()
+        if ( mongoose.Types.ObjectId.isValid(id) ) {
+            return this.eventService.findById(id).exec()
+        }
+
+        return null
     }
 }
