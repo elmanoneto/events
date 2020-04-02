@@ -21,7 +21,7 @@ export class EventsController {
     async findAll(@Res() res: Response) {
         try {
             const events = await this.eventsService.findAll()
-            res.status(HttpStatus.OK).send({ data: events })
+            res.status(HttpStatus.OK).send(events)
         } catch (error) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ code: HttpStatus.INTERNAL_SERVER_ERROR, data: error.message })
         }
@@ -31,7 +31,7 @@ export class EventsController {
     async getFeatured(@Res() res: Response) {
         try {
             const events = await this.eventsService.findAll()
-            res.status(HttpStatus.OK).send({ data: events })
+            res.status(HttpStatus.OK).send(events)
         } catch (error) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ code: HttpStatus.INTERNAL_SERVER_ERROR, data: error.message })
         }
