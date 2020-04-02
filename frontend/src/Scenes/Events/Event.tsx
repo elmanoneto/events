@@ -16,7 +16,7 @@ const Event = ({ event }: Props) => {
             </div>
             <div className="item bottom">
                 <h3>{ event.title }</h3>
-                <Link to={{ pathname: `/events/${event._id}` }}>
+                <Link to={{ pathname: `/events/${event._id}`, state: event }}>
                     <button>View</button>
                 </Link>
             </div>
