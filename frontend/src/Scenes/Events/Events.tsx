@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { IEvent } from '../../Interfaces/Event'
 import http from '../../config/http'
 import Event from './Event'
+import TodaysHighlight from './TodaysHighlight'
 
 const Events: React.FC = () => {
     const [events, setEvents] = useState<IEvent[]>([])
@@ -32,7 +33,9 @@ const Events: React.FC = () => {
             <section className="list">
                 { !!events && renderEvents() }
             </section>
-            <section className="featured">TODAY'S HIGHLIGHT</section>
+            <section className="featured">
+                <TodaysHighlight events={events} />
+            </section>
         </Page>
     )
 }
